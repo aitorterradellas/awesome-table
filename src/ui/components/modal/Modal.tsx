@@ -19,10 +19,10 @@ export const Modal = ({ cancel, isOpen, confirm, title }: ModalProps) => {
     <MuiModal onClose={cancel} open={isOpen}>
       <ModalContent>
         <Typography>{title}</Typography>
-        <IconButton onClick={confirm}>
+        <IconButton color={'primary'} onClick={confirm}>
           <Icon>{ICONS.CONFIRM}</Icon>
         </IconButton>
-        <IconButton onClick={cancel}>
+        <IconButton color={'error'} onClick={cancel}>
           <Icon>{ICONS.CANCEL}</Icon>
         </IconButton>
       </ModalContent>

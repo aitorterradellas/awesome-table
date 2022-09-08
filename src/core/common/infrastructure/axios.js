@@ -20,3 +20,22 @@ client.interceptors.response.use(
     }
   }
 )
+
+export const countryClient = axios.create({
+  baseURL: process.env.REACT_APP_COUNTRY_ENDPOINT,
+  headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': 'https://localhost:3000',
+  },
+})
+
+countryClient.interceptors.response.use(
+  (response) => response.data,
+  (error) => {
+    if (error.response) {
+      return Promise.reject(error)
+    } else {
+      return Promise.reject({ message: 'Something went wrong' })
+    }
+  }
+)

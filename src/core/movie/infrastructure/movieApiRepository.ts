@@ -13,7 +13,16 @@ import { Movie } from '../domain/Movie'
 export const movieApiRepository: IMovieRepository = {
   async getMovies(query: IQuery): Promise<Result<Movie[]>> {
     try {
-      const response: MovieDTO[] = await client.get(`/movies`)
+      const queryString = query.filter ? `filter=${query.filter}` : ''
+      const sortString = query.sortBy
+        ? `sortBy=${query.sortBy}&order=${query.order}`
+        : ''
+
+      const ampersand = queryString || sortString ? '&' : ''
+
+      const response: MovieDTO[] = await client.get(
+        `/movies?${queryString}${ampersand}${sortString}`
+      )
 
       const result = response.map((m) => movieMapper.toDomain(m))
 
@@ -32,18 +41,22 @@ export const movieApiRepository: IMovieRepository = {
     }
   },
 
-  async addMovie(movie: MovieDTO): Promise<Result> {
+  async addMovie(movie: Movie): Promise<Result> {
     try {
-      await client.post('/movies', movie)
+      const dto = movieMapper.fromDomain(movie)
+
+      await client.post('/movies', dto)
       return Result.success(undefined)
     } catch (e) {
       return Result.error(e as Error)
     }
   },
 
-  async updateMovie(movie: MovieDTO): Promise<Result> {
+  async updateMovie(movie: Movie): Promise<Result> {
     try {
-      await client.put(`/movies/${movie.id}`, movie)
+      const dto = movieMapper.fromDomain(movie)
+
+      await client.put(`/movies/${dto.id}`, dto)
       return Result.success(undefined)
     } catch (e) {
       return Result.error(e as Error)

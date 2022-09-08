@@ -1,16 +1,17 @@
+// Mapper
+import { movieUIMapper } from '../../../ui/store/movieUIMapper'
+
+// Types
 import { Result } from '../../common/domain/Result'
 import { IMovie } from '../domain/IMovie'
 import { IMovieRepository } from '../domain/IMovieRepository'
 
-// Mapper
-import { movieUIMapper } from '../../../ui/store/movieUIMapper'
-
-export const addMovieUseCase = async (
+export const updateMovieUseCase = async (
   repository: IMovieRepository,
   dto: IMovie
 ): Promise<Result> => {
   const movie = movieUIMapper.toDomain(dto)
-  const result = await repository.addMovie(movie)
+  const result = await repository.updateMovie(movie)
 
   if (result.isSuccess) {
     return Result.success(undefined)

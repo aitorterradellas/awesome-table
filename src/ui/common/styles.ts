@@ -6,3 +6,12 @@ export const Container = styled.div`
 
   margin: 24px;
 `
+
+export const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 24px;
+
+  width: 70%;
+`

@@ -3,8 +3,7 @@ import { IMovieState } from '../../core/movie/domain/IMovieState'
 
 const INITIAL_STATE: IMovieState = {
   movies: [],
-  loading: false,
-  error: '',
+  countries: [],
 }
 
 export const MovieContext = createContext({

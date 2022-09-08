@@ -69,7 +69,7 @@ export const MainPage = () => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [selectedMovie, setSelectedMovie] = useState('')
   const [query, setQuery] = useState<IQuery>({})
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState<string>()
 
   const getMovies = useCallback(async () => {
     const result = await getMoviesUseCase(

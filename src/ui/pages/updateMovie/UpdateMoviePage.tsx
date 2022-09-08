@@ -23,6 +23,7 @@ export const UpdateMoviePage = () => {
 
   const [movie, setMovie] = useState<IMovie>()
 
+  // Gets the movie by id
   useEffect(() => {
     const callback = async (id: string) => {
       const result = await getMovieUseCase(AppDependencies.IMovieRepository, id)
@@ -34,6 +35,7 @@ export const UpdateMoviePage = () => {
     if (id) callback(id)
   }, [id])
 
+  // Submits the updated movie and redirects to the main page
   const onSubmit = async (dto: IMovie) => {
     const result = await updateMovieUseCase(
       AppDependencies.IMovieRepository,

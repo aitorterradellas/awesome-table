@@ -71,6 +71,7 @@ export const MainPage = () => {
   const [query, setQuery] = useState<IQuery>({})
   const [search, setSearch] = useState<string>()
 
+  // Gets the movie list
   const getMovies = useCallback(async () => {
     const result = await getMoviesUseCase(
       AppDependencies.IMovieRepository,
@@ -101,6 +102,7 @@ export const MainPage = () => {
     setModalOpen(false)
   }
 
+  // Deletes the movie and closes the modal
   const deleteMovie = async () => {
     const result = await deleteMovieUseCase(
       AppDependencies.IMovieRepository,
@@ -117,6 +119,7 @@ export const MainPage = () => {
     setSearch(value)
   }
 
+  // Debounce effect when search value is changed
   useEffect(() => {
     const timeout = setTimeout(async () => {
       setQuery((prevQuery) => ({
@@ -130,6 +133,7 @@ export const MainPage = () => {
     }
   }, [search])
 
+  // Sets up the sort values
   const onSort = (sortBy: string) => {
     const order =
       query.sortBy === sortBy ? (query.order === ASC ? DESC : ASC) : ASC

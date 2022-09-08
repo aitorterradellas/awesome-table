@@ -35,6 +35,7 @@ export const MovieForm = ({ defaultValues, onSubmit }: MovieFormProps) => {
     setState,
   } = useContext(MovieContext)
 
+  // On change handler
   const onChange = (e: SyntheticEvent | SelectChangeEvent) => {
     const { name, value } = e.target as HTMLInputElement
     setFormValues({
@@ -43,6 +44,7 @@ export const MovieForm = ({ defaultValues, onSubmit }: MovieFormProps) => {
     })
   }
 
+  // On change for the checkbox
   const onCheck = (e: SyntheticEvent) => {
     const { name } = e.target as HTMLInputElement
     const toggleValue = !formValues[name as keyof typeof formValues]
@@ -52,6 +54,7 @@ export const MovieForm = ({ defaultValues, onSubmit }: MovieFormProps) => {
     })
   }
 
+  // On change for the slider
   const onSliderChange = (event: Event, value: number | number[]) => {
     if (typeof value === 'number') {
       setFormValues({

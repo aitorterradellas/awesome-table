@@ -13,11 +13,8 @@ import { addMovieUseCase } from '../../../core/movie/application/addMovieUseCase
 // Types
 import { IMovie } from '../../../core/movie/domain/IMovie'
 
-// Repository
-
 // Constants
 import { ROUTES } from '../../routes/routes'
-
 import { TITLE } from './newMovie.constants'
 
 const defaultValues: IMovie = {
